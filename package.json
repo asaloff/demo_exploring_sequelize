@@ -5,9 +5,11 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
     "seed": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
     "console": "node repl.js",
-    "c": "node repl.js"
+    "c": "node repl.js",
+    "sql": "node_modules/sequelize-cli/bin/sequelize"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +21,7 @@
     "morgan-toolkit": "^1.0.2",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.19.0"
+    "sequelize": "^4.19.0",
+    "sequelize-cli": "^3.0.0"
   }
 }

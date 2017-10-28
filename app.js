@@ -31,6 +31,29 @@ app.use((req, res, next) => {
 const usersRoutes = require('./routers/users');
 app.use('/', usersRoutes);
 
-app.listen(3000, function () {
-  console.log('listening on port 3000!');
+// Get the port from the ENV
+// command-line arg
+// or set it to 3000
+var port = process.env.PORT ||
+  process.argv[2] ||
+  3000;
+var host = 'localhost';
+
+// If we're in production we only need
+// the port in our args to the listen
+// function
+// else we can specify both in development
+var args;
+process.env.NODE_ENV === 'production' ?
+  args = [port] :
+  args = [port, host];
+
+// Add a helpful console.log
+// message when the server starts
+args.push(() => {
+  console.log(`Listening: http://${ host }:${ port }`);
 });
+
+// Use apply to pass the args
+// to listen
+app.listen.apply(app, args);
